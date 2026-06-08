@@ -9,7 +9,16 @@ def load_employees(file_path):
             reader = csv.DictReader(csv_file)
             employees = []
             for row in reader:
-                if not all(key in row for key in ['EmployeeID', 'Name', 'Department', 'Position', 'Salary']):
+                if not all(
+                    key in row
+                    for key in [
+                        "EmployeeID",
+                        "Name",
+                        "Department",
+                        "Position",
+                        "Salary",
+                    ]
+                ):
                     return [], "File format is incorrect or corrupted."
                 employees.append(row)
         return employees, None
@@ -21,13 +30,17 @@ def load_employees(file_path):
 
 def print_employees(employees):
     for emp in employees:
-        print(f"ID: {emp['EmployeeID']}, Name: {emp['Name']}, "
-              f"Department: {emp['Department']}, "
-              f"Position: {emp['Position']}, Salary: {emp['Salary']}")
+        print(
+            f"ID: {emp['EmployeeID']}, Name: {emp['Name']}, "
+            f"Department: {emp['Department']}, "
+            f"Position: {emp['Position']}, Salary: {emp['Salary']}"
+        )
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Load and display employees from a CSV file.")
+    parser = argparse.ArgumentParser(
+        description="Load and display employees from a CSV file."
+    )
     parser.add_argument("file", nargs="?", help="Path to the employees CSV file")
     args = parser.parse_args()
 
